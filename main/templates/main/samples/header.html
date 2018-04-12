@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta shopping-cart -->
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Title -->
+   <title>  </title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'main/css/font-awesome.min.css' %}" />
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}" />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'main/css/stylesheet.css' %}" />
+</head>
+
+<body>
+
+    <!-- Search Bar -->
+    <div class='search-mob'>
+        <div class='search'>
+            <div class='container'>
+                <form action="" method="">
+                    <input type="search" class='form-control' placeholder='بحث' />
+                    <i class='fa fa-close search-close'></i>
+                    <input type='submit' value='بحث' class='btn btn-success'/>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Search Bar -->
+
+    <!-- Contact us fixed btn -->
+    <div class='contact-fixed-btn'>
+        <a href='{% url 'main:contact' %}'>
+            <p><i class='fa fa-phone'></i></p>
+        </a>
+    </div>
+    <!-- Contact us fixed btn -->
+
+    <!-- MOB: Hot & News In Uppernav -->
+    <div class='uppernav'>
+        <div class='container'>
+            <div class='faded-upper-text'>
+                <div class='box active'>
+                    <p>يوجد لدينا منتجات من قسم 1</p>
+                </div>
+                <div class='box hidden'>
+                    <p>يوجد لدينا منتجات من قسم 2</p>
+                </div>
+                <div class='box hidden'>
+                    <p>يوجد لدينا منتجات من قسم 3</p>
+                </div>
+                <div class='box hidden'>
+                    <p>يوجد لدينا منتجات من قسم 4</p>
+                </div>
+                <div class='box hidden'>
+                    <p>يوجد لدينا منتجات من قسم 5</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MOB: Hot & News In Uppernav -->
+
+    <!-- Nav -->
+    <div class='nav'>
+        <div class='container'>
+            <div class='logo'>
+                 <a href='{% url 'main:home' %}'><img src='{% static 'main/images/logo.png' %}' class='img-fluid' /></a>
+            </div>
+            <div class='faded-text'>
+                <div class='box active'>
+                    <p>يوجد لدينا منتجات من قسم 1</p>
+                </div>
+                <div class='box hidden'>
+                    <p>يوجد لدينا منتجات من قسم 2</p>
+                </div>
+                <div class='box hidden'>
+                    <p>يوجد لدينا منتجات من قسم 3</p>
+                </div>
+                <div class='box hidden'>
+                    <p>يوجد لدينا منتجات من قسم 4</p>
+                </div>
+                <div class='box hidden'>
+                    <p>يوجد لدينا منتجات من قسم 5</p>
+                </div>
+            </div>
+            <div class='rhs'>
+               <i class='fa fa-user login-form-icon'></i>
+                <i class='fa fa-search search-icon'></i>
+                <a href='../cart.html' target="_blank">
+                    <p>
+                        <i class='fa fa-shopping-cart cart-icon'></i>
+                        <span class='cart-num'>0</span>
+                    </p>
+                </a>
+            </div>
+        </div>
+    </div>
+     !-- Nav -->
+    <!-- Search Bar -->
+    <div class='search'>
+        <div class='container'>
+            <form action="" method="">
+                <input type="search" class='form-control' placeholder='بحث' />
+                <i class='fa fa-close search-close'></i>
+                <input type='submit' value='بحث' class='btn btn-success'/>
+            </form>
+        </div>
+    </div>
+    <!-- Search Bar -->
+    <!-- Categories Navigation -->
+    <div class='cats-nav'>
+        <div class='container'>
+            <ul class='cats-navigation list-unstyled'>
+               <li class='active'><a href='{% url 'main:home' %}'>الرئيسيه</a></li>
+                {% for category in categories %}
+                    {% load url_mods %}
+                 <li><a href='{% url 'main:categories' cat_name=category %}'>{{ category|dashtospace}}</a></li>
+                {% endfor %}
+            <li><a href='{% url 'main:about' %}'>من نحن</a></li>
+                <li><a href='{% url 'main:business' %}'>Business</a></li>
+
+            </ul>
+        </div>
+    </div>
+    <!-- Categories Navigation -->
+
+    <!-- Start Mobile Nav -->
+
+    <div class='mobnav'>
+        <div class='container'>
+            <div class='nav-content'>
+                <div class='icon pull-left'>
+                    <div class='hamburger'></div>
+                </div>
+                <ul class='list-unstyled mlinks'>
+                    <li class='active'><a href='{% url 'main:home' %}'>الرئيسيه</a></li>
+                {% for category in categories %}
+                    {% load url_mods %}
+                 <li><a href='{% url 'main:categories' cat_name=category %}'>{{ category|dashtospace}}</a></li>
+                {% endfor %}
+                <li><a href='{% url 'main:business' %}'>بيزينيس</a></li>
+                <li><a href='{% url 'main:about' %}'>من نحن</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Mobile Nav -->

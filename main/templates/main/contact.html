@@ -1,0 +1,291 @@
+{% load static %}
+{% load url_mods %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta shopping-cart -->
+      <title>فور ايفر - تواصل معنا</title>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Title -->
+   <title>  </title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'main/css/font-awesome.min.css' %}" />
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}" />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'main/css/stylesheet.css' %}" />
+    <link rel="shortcut icon" href="{%  static 'main/images/logo.png' %}">
+</head>
+
+<body>
+
+    <!-- Login Form -->
+    <div id='fixedLogin' class='login'>
+        <div class='container'>
+            <div id='loginWindow' class='window'>
+                <i id='close' class='fa fa-close'></i>
+                <h3>تسجيل الدخول</h3>
+                <hr>
+                <form action="{% url 'main:login' %}" method="POST">
+                    <div class='form-group'>
+                        <input type="text" name="username" placeholder='أسم المستخدم' class='form-control' />
+                        <i class='fa fa-user'></i>
+                    </div>
+                    <div class='form-group'>
+                        <input type="password" name="password" placeholder='كلمة المرور' class='form-control' />
+                        <i class='fa fa-lock'></i>
+                    </div>
+                    <div class='row'>
+                        <div class='col-sm-6'>
+                            <input type='submit' value='دخول' class='form-control' />
+                        </div>
+                        <div class='col-sm-6'>
+                            <a href='{% url 'main:registration' %}'>إنشاء حساب ؟</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Login Form -->
+
+    <!-- Contact us fixed btn -->
+   <div class='contact-fixed-btn'>
+        <a href='{% url 'main:contact' %}'>
+            <p>
+                <i class='fa fa-phone'></i>
+            </p>
+        <span>Contact Us</span>
+        </a>
+    </div>
+    <!-- Contact us fixed btn -->
+    <!-- Contact us fixed btn -->
+
+    <!-- MOB: Hot & News In Uppernav -->
+    <div class='uppernav'>
+        <div class='container'>
+            <div class='faded-upper-text'>
+                 {% for news in news %}
+               {% if forloop.counter == 1 %}
+               <div class='box active'>
+                  <p>{{ news }}</p>
+               </div>
+               {% else %}
+               <div class='box hidden'>
+                  <p>{{ news }}</p>
+               </div>
+               {% endif %}
+               {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- MOB: Hot & News In Uppernav -->
+
+    <!-- Nav -->
+    <div class='nav'>
+        <div class='container'>
+            <div class='logo'>
+                <a href='{% url 'main:home' %}'><img src='{% static 'main/images/logo.png' %}' class='img-fluid' /></a>
+            </div>
+            <div class='faded-text'>
+                {% for news in news %}
+               {% if forloop.counter == 1 %}
+               <div class='box active'>
+                  <p>{{ news }}</p>
+               </div>
+               {% else %}
+               <div class='box hidden'>
+                  <p>{{ news }}</p>
+               </div>
+               {% endif %}
+               {% endfor %}
+            </div>
+           <div class='rhs'>
+               {% if user.is_authenticated %}
+               {% else %}
+               <i class='fa fa-user login-form-icon'></i>
+               {% endif %}
+               {% if user.is_authenticated %}
+               <div class='logged-in'>
+                  <ul class='list-unstyled'>
+                     <li>&nbsp;<i class='fa fa-sort-down'></i>{{ user.username }}</li>
+                     <li><a href='{% url 'main:logout' %}'>Logout&nbsp;<i class='fa fa-close'></i></a></li>
+                  </ul>
+               </div>
+               {% endif %}
+               <!--<i class='fa fa-search search-icon'></i>-->
+               <a href='{% url 'main:cart' %}' target="_blank">
+                  <p>
+                     <i class='fa fa-shopping-cart cart-icon'></i>
+                     <span class='cart-num'>0</span>
+                  </p>
+               </a>
+            </div>
+        </div>
+    </div>
+    <!-- Nav -->
+    <!-- Search Bar -->
+    <div class='search'>
+        <div class='container'>
+            <form action="" method="">
+                <input type="search" name='searchkey' class='form-control' placeholder='بحث' />
+                <i class='fa fa-close search-close'></i>
+                <input type='submit' value='بحث' class='btn btn-success'/>
+            </form>
+        </div>
+    </div>
+    <!-- Search Bar -->
+    <!-- Categories Navigation -->
+    <div class='cats-nav'>
+        <div class='container'>
+            <ul class='cats-navigation list-unstyled'>
+                 <li class='active'><a href='{% url 'main:home' %}'>الرئيسيه</a></li>
+               {% for category in categories %}
+               {% load url_mods %}
+               <li><a href='{% url 'main:categories' cat_name=category %}'>{{ category|dashtospace}}</a></li>
+               {% endfor %}
+               <li><a href='{% url 'main:about' %}'>من نحن</a></li>
+               <li><a href='{% url 'main:business' %}'>Business</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Categories Navigation -->
+
+    <!-- Start Mobile Nav -->
+
+    <div class='mobnav'>
+        <div class='container'>
+            <div class='nav-content'>
+                <div class='icon pull-left'>
+                    <div class='hamburger'></div>
+                </div>
+                <ul class='list-unstyled mlinks'>
+                     <li class='active'><a href='{% url 'main:home' %}'>الرئيسيه</a></li>
+               {% for category in categories %}
+               {% load url_mods %}
+               <li><a href='{% url 'main:categories' cat_name=category %}'>{{ category|dashtospace}}</a></li>
+               {% endfor %}
+               <li><a href='{% url 'main:about' %}'>من نحن</a></li>
+               <li><a href='{% url 'main:business' %}'>Business</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Mobile Nav -->
+
+    <!-- Contact Form -->
+    <div class='global-icon'><i class='fa fa-phone fa-2x'></i></div>
+    <div class='contact-form'>
+        <div class='container'>
+            <h3>أتصل بنا
+                <div class='new-line'><span style="width: 100px"></span></div>
+            </h3>
+            <form action="" method="">
+                <div class='form-group'>
+                    <input type='text' name="name" placeholder='أسم المستخدم' class='form-control' />
+                    <i class='fa fa-user'></i>
+                </div>
+                <div class='form-group'>
+                    <input type='email' name="email" placeholder='البريد الألكتروني' class='form-control' />
+                    <i class='fa fa-envelope'></i>
+                </div>
+                <div class='form-group'>
+                    <input type='text' name="phone" placeholder='رقم الهاتف' class='form-control' />
+                    <i class='fa fa-phone'></i>
+                </div>
+                <div class='form-group'>
+                    <textarea class='form-control textarea' placeholder="أكتب رسالتك"></textarea>
+                    <i class='fa fa-edit'></i>
+                </div>
+                {% csrf_token %}
+                <input type="submit" value="إرسال" class='form-control btn btn-primary' />
+            </form>
+        </div>
+    </div>
+    <!-- Contact Form -->
+
+    <!-- Footer -->
+    <div class='footer'>
+        <div class='container'>
+            <div class='row'>
+                <div class='col'>
+                    <div class='footer-brand'>
+                        <p>هنا يكتب نص يشرح محتوي الموقع و ما هي اهدافها </p>
+                        <ul class='footer-media list-unstyled'>
+                            <li><a href='https://www.facebook.com/malak.fathy.161' target="_blank"><i class='fa fa-facebook'></i></a></li>
+                            <li class='whatisapp'><a href='#'><i class='fa fa-whatsapp'></i></a></li>
+                            <li class='gemail'><a href='#'><i class='fa fa-google'></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class='col'>
+                    <ul class='sitemap list-unstyled row'>
+                        <div class='col-6'>
+                            <li>خريطه الموقع</li>
+                            <li class="active">
+                               <a href="{% url 'main:home' %}">الرئيسيه <span class="sr-only">(current)</span></a>
+                            </li>
+                            {% for category in categories %}
+                        <li>
+                           <a href="{% url 'main:categories' cat_name=category|spacetodash %}">{{ category|dashtospace }}</a>
+                        </li>
+                        {% endfor %}
+
+                        </div>
+                        <div class='col-6'>
+                            <li>
+                               <a href="{% url 'main:business' %}">Business</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'main:about' %}">من نحن</a>
+                            </li>
+                            <li>
+                                  <a href="{% url 'main:contact' %}">أتصل بنا</a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+                <div class='col'>
+                    <a href='{% url 'main:home' %}' target="_blank"><img src='{% static 'main/images/logo.png' %}' alt='' /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+
+    <!-- Sub Footer -->
+    <div class='sub-footer'>
+        <p>Copyright © 2018. foreverhealthyandbeauty.com All Rights Reserved.</p>
+    </div>
+    <!-- Sub Footer -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'main/js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'main/js/popper.min.js' %}"></script>
+    <!-- Javascript Tooltip library -->
+    <script src="{% static 'main/js/bootstrap.min.js' %}"></script>
+	<script type="text/javascript">
+    (function () {
+        var options = {
+            whatsapp: "+966536359930", // WhatsApp number
+            company_logo_url: "//static.whatshelp.io/img/flag.png", // URL of company logo (png, jpg, gif)
+            greeting_message: "Hello, how may we help you? Just send us a message now to get assistance.", // Text of greeting message
+            call_to_action: "Message us", // Call to action
+            position: "right", // Position may be 'right' or 'left'
+        };
+        var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();
+</script>
+    <script src='{% static 'main/js/plugins.js' %}'></script>
+</body>
+
+</html>

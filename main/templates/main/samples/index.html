@@ -1,0 +1,833 @@
+{% load static %}
+{% load url_mods %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta shopping-cart -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Title -->
+   <title>  </title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'main/css/font-awesome.min.css' %}" />
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}" />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'main/css/stylesheet.css' %}" />
+</head>
+
+<body>
+    
+    <!-- Login Form -->
+    <div id='fixedLogin' class='login'>
+        <div class='container'>
+            <div id='loginWindow' class='window'>
+                <i id='close' class='fa fa-close'></i>
+                <h3>تسجيل الدخول</h3>
+                <hr>
+                <form action="" method="GET">
+                    <div class='form-group'>
+                        <input type="text" name="user" placeholder='أسم المستخدم' class='form-control' />
+                        <i class='fa fa-user'></i>
+                    </div>
+                    <div class='form-group'>
+                        <input type="password" name="pass" placeholder='كلمة المرور' class='form-control' />
+                        <i class='fa fa-lock'></i>
+                    </div>
+                    <div class='row'>
+                        <div class='col-sm-6'>
+                            <input type='submit' value='دخول' class='form-control' />
+                        </div>
+                        <div class='col-sm-6'>
+                            <a href='{% url 'main:registration' %}'>إنشاء حساب ؟</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Login Form -->
+    
+    <!-- Contact us fixed btn -->
+    <div class='contact-fixed-btn'>
+        <a href='{% url 'main:contact' %}'>
+            <p><i class='fa fa-phone'></i></p>
+        </a>
+    </div>
+    <!-- Contact us fixed btn -->
+
+    <!-- MOB: Hot & News In Uppernav -->
+    <div class='uppernav'>
+        <div class='container'>
+            <div class='faded-upper-text'>
+                <div class='box active'>
+                    <p>يوجد لدينا منتجات من قسم 1</p>
+                </div>
+                <div class='box hidden'>
+                    <p>يوجد لدينا منتجات من قسم 2</p>
+                </div>
+                <div class='box hidden'>
+                    <p>يوجد لدينا منتجات من قسم 3</p>
+                </div>
+                <div class='box hidden'>
+                    <p>يوجد لدينا منتجات من قسم 4</p>
+                </div>
+                <div class='box hidden'>
+                    <p>يوجد لدينا منتجات من قسم 5</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MOB: Hot & News In Uppernav -->
+
+    <!-- Nav -->
+    <div class='nav'>
+        <div class='container'>
+            <div class='logo'>
+                <a href='{% url 'main:home' %}'><img src='{% static 'main/images/logo.png' %}' class='img-fluid' /></a>
+            </div>
+            <div class='faded-text'>
+                <div class='box active'>
+                    <p>يوجد لدينا منتجات من قسم 1</p>
+                </div>
+                <div class='box hidden'>
+                    <p>يوجد لدينا منتجات من قسم 2</p>
+                </div>
+                <div class='box hidden'>
+                    <p>يوجد لدينا منتجات من قسم 3</p>
+                </div>
+                <div class='box hidden'>
+                    <p>يوجد لدينا منتجات من قسم 4</p>
+                </div>
+                <div class='box hidden'>
+                    <p>يوجد لدينا منتجات من قسم 5</p>
+                </div>
+            </div>
+            <div class='rhs'>
+                <i class='fa fa-user login-form-icon'></i>
+                <i class='fa fa-search search-icon'></i>
+                <a href='cart.html' target="_blank">
+                    <p>
+                        <i class='fa fa-shopping-cart cart-icon'></i>
+                        <span class='cart-num'>0</span>
+                    </p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Nav -->
+    <!-- Search Bar -->
+    <div class='search'>
+        <div class='container'>
+            <form action="" method="">
+                <input type="search" name='searchkey' class='form-control' placeholder='بحث' />
+                <i class='fa fa-close search-close'></i>
+                <input type='submit' value='بحث' class='btn btn-success'/>
+            </form>
+        </div>
+    </div>
+    <!-- Search Bar -->
+    <!-- Categories Navigation -->
+    <div class='cats-nav'>
+        <div class='container'>
+            <ul class='cats-navigation list-unstyled'>
+                     <li class='active'><a href='{% url 'main:home' %}'>الرئيسيه</a></li>
+                {% for category in categories %}
+                    {% load url_mods %}
+                 <li><a href='{% url 'main:categories' cat_name=category %}'>{{ category|dashtospace}}</a></li>
+                {% endfor %}
+            <li><a href='{% url 'main:about' %}'>من نحن</a></li>
+                <li><a href='{% url 'main:business' %}'>Business</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Categories Navigation -->
+
+    <!-- Start Mobile Nav -->
+
+    <div class='mobnav'>
+        <div class='container'>
+            <div class='nav-content'>
+                <div class='icon pull-left'>
+                    <div class='hamburger'></div>
+                </div>
+                <ul class='list-unstyled mlinks'>
+                         <li class='active'><a href='{% url 'main:home' %}'>الرئيسيه</a></li>
+                {% for category in categories %}
+                    {% load url_mods %}
+                 <li><a href='{% url 'main:categories' cat_name=category %}'>{{ category|dashtospace}}</a></li>
+                {% endfor %}
+            <li><a href='{% url 'main:about' %}'>من نحن</a></li>
+                <li><a href='{% url 'main:business' %}'>Business</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Mobile Nav -->
+
+    <!-- Start Testimonials -->
+
+    <div class='slider1'>
+        <div class="container">
+            <div class="testimonials">
+                <ul class='list-unstyled'>
+                    <li class="box active"></li>
+                    <li class="box hidden"></li>
+                    <li class="box hidden"></li>
+                    <li class="box hidden"></li>
+                </ul>
+                <!--<i class="fa fa-angle-right fa-2x"></i>
+                <i class="fa fa-angle-left fa-2x"></i>-->
+            </div>
+        </div>
+    </div>
+
+    <!-- End Testimonials -->
+
+
+    <!-- Start Content -->
+    <div class='home-page text-center'>
+        <h4 class='text-center hidden main-h4'>Forever</h4>
+        <div class='container'>
+            <div class='row'>
+                {% comment %} Loop through categories{% endcomment %}
+                <div class='col-md-6'>
+                     <a href='{% url 'main:categories' cat_name='منتجات-التخسيس' %}'>
+                        <div class='image'>
+                            <img src='{% static 'main/images/home01.jpg' %}' alt='' class='img-fluid' />
+                            <div class='overlay'>
+                                <h4>
+                                    مننتجات التخسيس
+                                    <span class='first-circle'></span>
+                                    <span class='second-circle'></span>
+                                </h4>
+                                <p>شاهد المزيد</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class='col-md-6'>
+                    <a href='{% url 'main:categories' cat_name='العنايه-و-الشعر' %}'>
+                        <div class='image'>
+                            <img src='{% static 'main/images/home02.jpg' %}' alt='' class='img-fluid' />
+                            <div class='overlay'>
+                                <h4>
+                                    العنايه و الشعر
+                                    <span class='first-circle'></span>
+                                    <span class='second-circle'></span>
+                                </h4>#
+                                <p>شاهد المزيد</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class='col-md-6'>
+                    <a href='{% url 'main:categories' cat_name='مننتجات-الزيوت' %}'>
+                        <div class='image'>
+                            <img src='{% static 'main/images/home03.jpg' %}' alt='' class='img-fluid' />
+                            <div class='overlay'>
+                                <h4>
+                                    مننتجات الزيوت
+                                    <span class='first-circle'></span>
+                                    <span class='second-circle'></span>
+                                </h4>
+                                <p>شاهد المزيد</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class='col-md-6'>
+                    <a href='{% url 'main:categories' cat_name='مكملات-غذائيه' %}'>
+                        <div class='image'>
+                            <img src='{% static 'main/images/home04.jpg' %}' alt='' class='img-fluid' />
+                            <div class='overlay'>
+                                <h4>
+                                    مكملات غذائيه
+                                    <span class='first-circle'></span>
+                                    <span class='second-circle'></span>
+                                </h4>
+                                <p>شاهد المزيد</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class='col-md-6'>
+                    <a href='{% url 'main:business' %}'>
+                        <div class='image'>
+                            <img src='{% static 'main/images/home05.jpg' %}' alt='' class='img-fluid' />
+                            <div class='overlay'>
+                                <h4>
+                                    Business
+                                    <span class='first-circle'></span>
+                                    <span class='second-circle'></span>
+                                </h4>
+                                <p>شاهد المزيد</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class='col-md-6'>
+                    <a href='{% url 'main:about' %}'>
+                        <div class='image'>
+                            <img src='{% static 'main/images/home06.jpg' %}' alt='' class='img-fluid' />
+                            <div class='overlay'>
+                                <h4>
+                                    من نحن
+                                    <span class='first-circle'></span>
+                                    <span class='second-circle'></span>
+                                </h4>
+                                <p>شاهد المزيد</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Content -->
+
+    <!-- Start Important Note -->
+    <div class='important-note'>
+        <div class='container'>
+            <div class='title'>
+                <h3>تنويه هام عن الموقع</h3>
+            </div>
+            <hr>
+            <div class='text'>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis repudiandae, molestiae maiores animi saepe porro natus. Beatae porro fuga debitis explicabo pariatur, iure, enim maiores vel voluptatum delectus. Cumque, iste?</p>
+            </div>
+        </div>
+    </div>
+    <!-- Start Important Note -->
+
+    <!-- Suggest Product Slider -->
+    <!-- Special Header For Slider -->
+    <div class='container'>
+        <h3 class='special-header'>أهم العروض و الخصومات</h3>
+    </div>
+    <!-- Special Header For Slider -->
+    <div id="sugSlider1" class="carousel slide category" data-ride="carousel">
+        <div class="carousel-inner container">
+            <div class="carousel-item active">
+                <!-- Start Of SugSlider Row -->
+                <div class='row'>
+                    <div class='col'>
+                        <!-- ********** Start Product ********** -->
+                        <div class='product'>
+                            <div class='image'>
+                                <img src='images/G50.png' alt='product1' class='img-fluid' />
+                                <div class='overlay'>
+                                    <div class='icons'>
+                                        <i class='fa fa-eye see'></i>
+                                        <a href='product.html'><i class='fa fa-shopping-cart buy'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class='list-unstyled'>
+                                <li>أسم المنتج <span class='offer-percentage pull-left'>35%</span></li>
+                                <li>
+                                    <p>تأسست شركة فوريفر ليفينج الامريكية عام 1978م وتعتبر الأولى</p>
+                                </li>
+                                <li>
+                                    <strike><p>1200 <span>L.E</span></p></strike>
+                                    <p class='new-price'>560 <span>L.E</span></p>
+                                </li>
+                            </ul>
+                            <span class='offer'>عرض</span>
+                        </div>
+                        <!-- ********** End Product ********** -->
+                    </div>
+                    <div class='col'>
+                        <!-- ********** Start Product ********** -->
+                        <div class='product'>
+                            <div class='image'>
+                                <img src='images/G80.png' alt='product1' class='img-fluid' />
+                                <div class='overlay'>
+                                    <div class='icons'>
+                                        <i class='fa fa-eye see'></i>
+                                        <a href='product.html'><i class='fa fa-shopping-cart buy'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class='list-unstyled'>
+                                <li>أسم المنتج <span class='offer-percentage pull-left'>35%</span></li>
+                                <li>
+                                    <p>تأسست شركة فوريفر ليفينج الامريكية عام 1978م وتعتبر الأولى</p>
+                                </li>
+                                <li>
+                                    <strike><p>1200 <span>L.E</span></p></strike>
+                                    <p class='new-price'>560 <span>L.E</span></p>
+                                </li>
+                            </ul>
+                            <span class='offer'>عرض</span>
+                        </div>
+                        <!-- ********** End Product ********** -->
+                    </div>
+                    <div class='col mob-hidden'>
+                        <!-- ********** Start Product ********** -->
+                        <div class='product'>
+                            <div class='image'>
+                                <img src='images/g86.png' alt='product1' class='img-fluid' />
+                                <div class='overlay'>
+                                    <div class='icons'>
+                                        <i class='fa fa-eye see'></i>
+                                        <a href='product.html'><i class='fa fa-shopping-cart buy'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class='list-unstyled'>
+                                <li>أسم المنتج <span class='offer-percentage pull-left'>35%</span></li>
+                                <li>
+                                    <p>تأسست شركة فوريفر ليفينج الامريكية عام 1978م وتعتبر الأولى</p>
+                                </li>
+                                <li>
+                                    <strike><p>1200 <span>L.E</span></p></strike>
+                                    <p class='new-price'>560 <span>L.E</span></p>
+                                </li>
+                            </ul>
+                            <span class='offer'>عرض</span>
+                        </div>
+                        <!-- ********** End Product ********** -->
+                    </div>
+                    <div class='col mob-hidden'>
+                        <!-- ********** Start Product ********** -->
+                        <div class='product'>
+                            <div class='image'>
+                                <img src='images/M80.png' alt='product1' class='img-fluid' />
+                                <div class='overlay'>
+                                    <div class='icons'>
+                                        <i class='fa fa-eye see'></i>
+                                        <a href='product.html'><i class='fa fa-shopping-cart buy'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class='list-unstyled'>
+                                <li>أسم المنتج <span class='offer-percentage pull-left'>35%</span></li>
+                                <li>
+                                    <p>تأسست شركة فوريفر ليفينج الامريكية عام 1978م وتعتبر الأولى</p>
+                                </li>
+                                <li>
+                                    <strike><p>1200 <span>L.E</span></p></strike>
+                                    <p class='new-price'>560 <span>L.E</span></p>
+                                </li>
+                            </ul>
+                            <span class='offer'>عرض</span>
+                        </div>
+                        <!-- ********** End Product ********** -->
+                    </div>
+                    <div class='col mob-hidden'>
+                        <!-- ********** Start Product ********** -->
+                        <div class='product'>
+                            <div class='image'>
+                                <img src='images/vinno%205.png' alt='product1' class='img-fluid' />
+                                <div class='overlay'>
+                                    <div class='icons'>
+                                        <i class='fa fa-eye see'></i>
+                                        <a href='product.html'><i class='fa fa-shopping-cart buy'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class='list-unstyled'>
+                                <li>أسم المنتج <span class='offer-percentage pull-left'>35%</span></li>
+                                <li>
+                                    <p>تأسست شركة فوريفر ليفينج الامريكية عام 1978م وتعتبر الأولى</p>
+                                </li>
+                                <li>
+                                    <strike><p>1200 <span>L.E</span></p></strike>
+                                    <p class='new-price'>560 <span>L.E</span></p>
+                                </li>
+                            </ul>
+                            <span class='offer'>عرض</span>
+                        </div>
+                        <!-- ********** End Product ********** -->
+                    </div>
+                </div>
+                <!-- End Of SugSlider Row -->
+            </div>
+            <div class="carousel-item">
+                <!-- Start Of SugSlider Row -->
+                <div class='row'>
+                    <div class='col'>
+                        <!-- ********** Start Product ********** -->
+                        <div class='product'>
+                            <div class='image'>
+                                <img src='images/G50.png' alt='product1' class='img-fluid' />
+                                <div class='overlay'>
+                                    <div class='icons'>
+                                        <i class='fa fa-eye see'></i>
+                                        <a href='product.html'><i class='fa fa-shopping-cart buy'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class='list-unstyled'>
+                                <li>أسم المنتج <span class='offer-percentage pull-left'>35%</span></li>
+                                <li>
+                                    <p>تأسست شركة فوريفر ليفينج الامريكية عام 1978م وتعتبر الأولى</p>
+                                </li>
+                                <li>
+                                    <strike><p>1200 <span>L.E</span></p></strike>
+                                    <p class='new-price'>560 <span>L.E</span></p>
+                                </li>
+                            </ul>
+                            <span class='offer'>عرض</span>
+                        </div>
+                        <!-- ********** End Product ********** -->
+                    </div>
+                    <div class='col'>
+                        <!-- ********** Start Product ********** -->
+                        <div class='product'>
+                            <div class='image'>
+                                <img src='images/G80.png' alt='product1' class='img-fluid' />
+                                <div class='overlay'>
+                                    <div class='icons'>
+                                        <i class='fa fa-eye see'></i>
+                                        <a href='product.html'><i class='fa fa-shopping-cart buy'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class='list-unstyled'>
+                                <li>أسم المنتج <span class='offer-percentage pull-left'>35%</span></li>
+                                <li>
+                                    <p>تأسست شركة فوريفر ليفينج الامريكية عام 1978م وتعتبر الأولى</p>
+                                </li>
+                                <li>
+                                    <strike><p>1200 <span>L.E</span></p></strike>
+                                    <p class='new-price'>560 <span>L.E</span></p>
+                                </li>
+                            </ul>
+                            <span class='offer'>عرض</span>
+                        </div>
+                        <!-- ********** End Product ********** -->
+                    </div>
+                    <div class='col mob-hidden'>
+                        <!-- ********** Start Product ********** -->
+                        <div class='product'>
+                            <div class='image'>
+                                <img src='images/g86.png' alt='product1' class='img-fluid' />
+                                <div class='overlay'>
+                                    <div class='icons'>
+                                        <i class='fa fa-eye see'></i>
+                                        <a href='product.html'><i class='fa fa-shopping-cart buy'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class='list-unstyled'>
+                                <li>أسم المنتج <span class='offer-percentage pull-left'>35%</span></li>
+                                <li>
+                                    <p>تأسست شركة فوريفر ليفينج الامريكية عام 1978م وتعتبر الأولى</p>
+                                </li>
+                                <li>
+                                    <strike><p>1200 <span>L.E</span></p></strike>
+                                    <p class='new-price'>560 <span>L.E</span></p>
+                                </li>
+                            </ul>
+                            <span class='offer'>عرض</span>
+                        </div>
+                        <!-- ********** End Product ********** -->
+                    </div>
+                    <div class='col mob-hidden'>
+                        <!-- ********** Start Product ********** -->
+                        <div class='product'>
+                            <div class='image'>
+                                <img src='images/M80.png' alt='product1' class='img-fluid' />
+                                <div class='overlay'>
+                                    <div class='icons'>
+                                        <i class='fa fa-eye see'></i>
+                                        <a href='product.html'><i class='fa fa-shopping-cart buy'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class='list-unstyled'>
+                                <li>أسم المنتج <span class='offer-percentage pull-left'>35%</span></li>
+                                <li>
+                                    <p>تأسست شركة فوريفر ليفينج الامريكية عام 1978م وتعتبر الأولى</p>
+                                </li>
+                                <li>
+                                    <strike><p>1200 <span>L.E</span></p></strike>
+                                    <p class='new-price'>560 <span>L.E</span></p>
+                                </li>
+                            </ul>
+                            <span class='offer'>عرض</span>
+                        </div>
+                        <!-- ********** End Product ********** -->
+                    </div>
+                    <div class='col mob-hidden'>
+                        <!-- ********** Start Product ********** -->
+                        <div class='product'>
+                            <div class='image'>
+                                <img src='images/vinno%205.png' alt='product1' class='img-fluid' />
+                                <div class='overlay'>
+                                    <div class='icons'>
+                                        <i class='fa fa-eye see'></i>
+                                        <a href='product.html'><i class='fa fa-shopping-cart buy'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class='list-unstyled'>
+                                <li>أسم المنتج <span class='offer-percentage pull-left'>35%</span></li>
+                                <li>
+                                    <p>تأسست شركة فوريفر ليفينج الامريكية عام 1978م وتعتبر الأولى</p>
+                                </li>
+                                <li>
+                                    <strike><p>1200 <span>L.E</span></p></strike>
+                                    <p class='new-price'>560 <span>L.E</span></p>
+                                </li>
+                            </ul>
+                            <span class='offer'>عرض</span>
+                        </div>
+                        <!-- ********** End Product ********** -->
+                    </div>
+                </div>
+                <!-- End Of SugSlider Row -->
+            </div>
+            <div class="carousel-item">
+                <!-- Start Of SugSlider Row -->
+                <div class='row'>
+                    <div class='col'>
+                        <!-- ********** Start Product ********** -->
+                        <div class='product'>
+                            <div class='image'>
+                                <img src='images/G50.png' alt='product1' class='img-fluid' />
+                                <div class='overlay'>
+                                    <div class='icons'>
+                                        <i class='fa fa-eye see'></i>
+                                        <a href='product.html'><i class='fa fa-shopping-cart buy'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class='list-unstyled'>
+                                <li>أسم المنتج <span class='offer-percentage pull-left'>35%</span></li>
+                                <li>
+                                    <p>تأسست شركة فوريفر ليفينج الامريكية عام 1978م وتعتبر الأولى</p>
+                                </li>
+                                <li>
+                                    <strike><p>1200 <span>L.E</span></p></strike>
+                                    <p class='new-price'>560 <span>L.E</span></p>
+                                </li>
+                            </ul>
+                            <span class='offer'>عرض</span>
+                        </div>
+                        <!-- ********** End Product ********** -->
+                    </div>
+                    <div class='col'>
+                        <!-- ********** Start Product ********** -->
+                        <div class='product'>
+                            <div class='image'>
+                                <img src='images/G80.png' alt='product1' class='img-fluid' />
+                                <div class='overlay'>
+                                    <div class='icons'>
+                                        <i class='fa fa-eye see'></i>
+                                        <a href='product.html'><i class='fa fa-shopping-cart buy'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class='list-unstyled'>
+                                <li>أسم المنتج <span class='offer-percentage pull-left'>35%</span></li>
+                                <li>
+                                    <p>تأسست شركة فوريفر ليفينج الامريكية عام 1978م وتعتبر الأولى</p>
+                                </li>
+                                <li>
+                                    <strike><p>1200 <span>L.E</span></p></strike>
+                                    <p class='new-price'>560 <span>L.E</span></p>
+                                </li>
+                            </ul>
+                            <span class='offer'>عرض</span>
+                        </div>
+                        <!-- ********** End Product ********** -->
+                    </div>
+                    <div class='col mob-hidden'>
+                        <!-- ********** Start Product ********** -->
+                        <div class='product'>
+                            <div class='image'>
+                                <img src='images/g86.png' alt='product1' class='img-fluid' />
+                                <div class='overlay'>
+                                    <div class='icons'>
+                                        <i class='fa fa-eye see'></i>
+                                        <a href='product.html'><i class='fa fa-shopping-cart buy'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class='list-unstyled'>
+                                <li>أسم المنتج <span class='offer-percentage pull-left'>35%</span></li>
+                                <li>
+                                    <p>تأسست شركة فوريفر ليفينج الامريكية عام 1978م وتعتبر الأولى</p>
+                                </li>
+                                <li>
+                                    <strike><p>1200 <span>L.E</span></p></strike>
+                                    <p class='new-price'>560 <span>L.E</span></p>
+                                </li>
+                            </ul>
+                            <span class='offer'>عرض</span>
+                        </div>
+                        <!-- ********** End Product ********** -->
+                    </div>
+                    <div class='col mob-hidden'>
+                        <!-- ********** Start Product ********** -->
+                        <div class='product'>
+                            <div class='image'>
+                                <img src='images/M80.png' alt='product1' class='img-fluid' />
+                                <div class='overlay'>
+                                    <div class='icons'>
+                                        <i class='fa fa-eye see'></i>
+                                        <a href='product.html'><i class='fa fa-shopping-cart buy'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class='list-unstyled'>
+                                <li>أسم المنتج <span class='offer-percentage pull-left'>35%</span></li>
+                                <li>
+                                    <p>تأسست شركة فوريفر ليفينج الامريكية عام 1978م وتعتبر الأولى</p>
+                                </li>
+                                <li>
+                                    <strike><p>1200 <span>L.E</span></p></strike>
+                                    <p class='new-price'>560 <span>L.E</span></p>
+                                </li>
+                            </ul>
+                            <span class='offer'>عرض</span>
+                        </div>
+                        <!-- ********** End Product ********** -->
+                    </div>
+                    <div class='col mob-hidden'>
+                        <!-- ********** Start Product ********** -->
+                        <div class='product'>
+                            <div class='image'>
+                                <img src='images/vinno%205.png' alt='product1' class='img-fluid' />
+                                <div class='overlay'>
+                                    <div class='icons'>
+                                        <i class='fa fa-eye see'></i>
+                                        <a href='product.html'><i class='fa fa-shopping-cart buy'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class='list-unstyled'>
+                                <li>أسم المنتج <span class='offer-percentage pull-left'>35%</span></li>
+                                <li>
+                                    <p>تأسست شركة فوريفر ليفينج الامريكية عام 1978م وتعتبر الأولى</p>
+                                </li>
+                                <li>
+                                    <strike><p>1200 <span>L.E</span></p></strike>
+                                    <p class='new-price'>560 <span>L.E</span></p>
+                                </li>
+                            </ul>
+                            <span class='offer'>عرض</span>
+                        </div>
+                        <!-- ********** End Product ********** -->
+                    </div>
+                </div>
+                <!-- End Of SugSlider Row -->
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#sugSlider1" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">السابق</span>
+        </a>
+        <a class="carousel-control-next" href="#sugSlider1" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <!-- Suggest Product Slider -->
+
+    <!-- Footer -->
+    <div class='footer'>
+        <div class='container'>
+            <div class='row'>
+                <div class='col'>
+                    <div class='footer-brand'>
+                        <p>هنا يكتب نص يشرح محتوي الموقع و ما هي اهدافها </p>
+                        <ul class='footer-media list-unstyled'>
+                            <li><a href='https://www.facebook.com/malak.fathy.161' target="_blank"><i class='fa fa-facebook'></i></a></li>
+                            <li class='whatisapp'><a href='#'><i class='fa fa-whatsapp'></i></a></li>
+                            <li class='gemail'><a href='#'><i class='fa fa-google'></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class='col'>
+                    <ul class='sitemap list-unstyled row'>
+                        <div class='col-6'>
+                            <li>خريطه الموقع</li>
+                            <li class="active">
+                                <a href="index.html">الرئيسيه <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li>
+                                <a href="#">منتجات التخسيس</a>
+                            </li>
+                            <li>
+                                <a href="#">منتجات العنايه</a>
+                            </li>
+                            <li>
+                                <a href="#">منتجات المكملات الغذائيه</a>
+                            </li>
+                            <li>
+                                <a href="#">منتجات الزيوت</a>
+                            </li>
+                        </div>
+                        <div class='col-6'>
+                            <li>
+                                <a href="{% url 'main:business' %}">Business</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'main:about' %}">من نحن</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'main:contact' %}">أتصل بنا</a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+                <div class='col'>
+                    <a href='https://www.mifingr.com/' target="_blank"><img src='{% static 'main/images/logo.png' %}' alt='' /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+
+    <!-- Sub Footer -->
+    <div class='sub-footer'>
+        <p>Copyright &copy; All Rights Reversed &reg; To Forever Company</p>
+    </div>
+    <!-- Sub Footer -->
+    
+    <!-- *********************** Modals *********************** -->
+    <div class='product-modal'>
+        <div class='window'>
+            <div class='row'>
+                <div class='col-md-5'>
+                    <div class="image">
+                        <img src='images/E20-1.png' class='img-fluid' alt='' />
+                    </div>
+                </div>
+                <div class='col-md-7'>
+                    <div class="text">
+                        <div class="header">
+                            <h4>أسم المنتج</h4>
+                        </div>
+                        <hr>
+                        <div class='desc'>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, dignissimos similique rerum facere doloribus facilis molestias iste minima aut ipsa.</p>
+                        </div>
+                        <a href="product.html">شاهد المنتج كامل</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class='close-this-product-modal'><i class='fa fa-close fa-2x  close-product-modal'></i> إغلاق</p>
+    </div>
+    <!-- *********************** Models *********************** -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'main/js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'main/js/popper.min.js' %}"></script>
+    <!-- Javascript Tooltip library -->
+    <script src="{% static 'main/js/bootstrap.min.js' %}"></script>
+    <script src='{% static 'main/js/plugins.js' %}'></script>
+</body>
+
+</html>

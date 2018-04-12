@@ -1,0 +1,573 @@
+{% load static %}
+{% load url_mods %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>فور ايفر - من نحن</title>
+    <!-- Required meta shopping-cart -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Title -->
+   <title>  </title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'main/css/font-awesome.min.css' %}" />
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}" />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'main/css/stylesheet.css' %}" />
+    <link rel="shortcut icon" href="{%  static 'main/images/logo.png' %}">
+</head>
+
+<body>
+
+    <!-- Login Form -->
+    <div id='fixedLogin' class='login'>
+        <div class='container'>
+            <div id='loginWindow' class='window'>
+                <i id='close' class='fa fa-close'></i>
+                <h3>تسجيل الدخول</h3>
+                <hr>
+                <form action="{% url 'main:login' %}" method="POST">
+                    <div class='form-group'>
+                        <input type="text" name="username" placeholder='أسم المستخدم' class='form-control' />
+                        <i class='fa fa-user'></i>
+                    </div>
+                    <div class='form-group'>
+                        <input type="password" name="password" placeholder='كلمة المرور' class='form-control' />
+                        <i class='fa fa-lock'></i>
+                    </div>
+                    <div class='row'>
+                        <div class='col-sm-6'>
+                            {% csrf_token %}
+                            <input type='submit' value='دخول' class='form-control' />
+                        </div>
+                        <div class='col-sm-6'>
+                            <a href='{% url 'main:registration' %}'>إنشاء حساب ؟</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Login Form -->
+
+    <div class='contact-fixed-btn'>
+        <a href='{% url 'main:contact' %}'>
+            <p>
+                <i class='fa fa-phone'></i>
+            </p>
+        <span>Contact Us</span>
+        </a>
+    </div>
+    <!-- Contact us fixed btn -->
+
+    <!-- MOB: Hot & News In Uppernav -->
+    <div class='uppernav'>
+        <div class='container'>
+            <div class='faded-upper-text'>
+                 {% for news in news %}
+                   {% if forloop.counter == 1 %}
+                        <div class='box active'>
+                    <p>{{ news }}</p>
+                        </div>
+                       {% else %}
+                        <div class='box hidden'>
+                    <p>{{ news }}</p>
+                </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- MOB: Hot & News In Uppernav -->
+
+    <!-- Nav -->
+    <div class='nav'>
+        <div class='container'>
+            <div class='logo'>
+                <a href='{% url 'main:home' %}'><img src='{% static 'main/images/logo.png' %}' class='img-fluid' /></a>
+            </div>
+            <div class='faded-text'>
+                {% for news in news %}
+                   {% if forloop.counter == 1 %}
+                        <div class='box active'>
+                    <p>{{ news }}</p>
+                        </div>
+                       {% else %}
+                        <div class='box hidden'>
+                    <p>{{ news }}</p>
+                </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class='rhs'>
+                  {% if user.is_authenticated %}
+                  {% else %}
+                <i class='fa fa-user login-form-icon'></i>
+                  {% endif %}
+                 {% if user.is_authenticated %}
+                <div class='logged-in'>
+                   <ul class='list-unstyled'>
+
+                       <li>&nbsp;<i class='fa fa-sort-down'></i>{{ user.username }}</li>
+                       <li><a href='{% url 'main:logout' %}'>Logout&nbsp;<i class='fa fa-close'></i></a></li>
+                   </ul>
+                </div>
+              {% endif %}
+                <!--<i class='fa fa-search search-icon'></i>-->
+                <a href='{% url 'main:cart' %}' target="_blank">
+                    <p>
+                        <i class='fa fa-shopping-cart cart-icon'></i>
+                        <span class='cart-num'>0</span>
+                    </p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Nav -->
+    <!-- Search Bar -->
+    <div class='search'>
+        <div class='container'>
+            <form action="" method="">
+                <input type="search" name='searchkey' class='form-control' placeholder='بحث' />
+                <i class='fa fa-close search-close'></i>
+                <input type='submit' value='بحث' class='btn btn-success' />
+            </form>
+        </div>
+    </div>
+    <!-- Search Bar -->
+    <!-- Categories Navigation -->
+    <div class='cats-nav'>
+        <div class='container'>
+            <ul class='cats-navigation list-unstyled'>
+                <li class='active'><a href='{% url 'main:home' %}'>الرئيسيه</a></li>
+                {% for category in categories %}
+                    {% load url_mods %}
+                 <li><a href='{% url 'main:categories' cat_name=category %}'>{{ category|dashtospace}}</a></li>
+                {% endfor %}
+            <li><a href='{% url 'main:about' %}'>من نحن</a></li>
+                <li><a href='{% url 'main:business' %}'>Business</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Categories Navigation -->
+
+    <!-- Start Mobile Nav -->
+
+    <div class='mobnav'>
+        <div class='container'>
+            <div class='nav-content'>
+                <div class='icon pull-left'>
+                    <div class='hamburger'></div>
+                </div>
+                <ul class='list-unstyled mlinks'>
+                      <li class='active'><a href='{% url 'main:home' %}'>الرئيسيه</a></li>
+                {% for category in categories %}
+                    {% load url_mods %}
+                 <li><a href='{% url 'main:categories' cat_name=category %}'>{{ category|dashtospace}}</a></li>
+                {% endfor %}
+            <li><a href='{% url 'main:about' %}'>من نحن</a></li>
+                <li><a href='{% url 'main:business' %}'>Business</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Mobile Nav -->
+
+    <div class='about-page-content'>
+        <h1 class='text-center'>من نحن</h1>
+
+        <!-- Start About Us Section -->
+
+        <div class='about-sections'>
+            <div class='container'>
+                <h2><b>التعريف بشركة فوريفر ليفينج برودكتس</b></h2>
+                <p class='text-center'>تأسست شركة فوريفر ليفينج الامريكية عام 1978 مو تعتبرالأولى في إنتاج مستحضرات الصبار الطبيعية و منتجات النحل والمكملات الغذائية في الولايات المتحدة الامريكية وعلى مستوى العالم، حيث تسيطر الشركة على 85 % من إنتاج العالم من نبات الصبار، كما تسيطرعلى 75 % من إنتاج العالم من منتجات النحل من خلال امتلاكها الى اكبر مزارع الصبار على مستوى العالم و اكبر مناحل النحل
+                </p>
+                <p class='text-center'>تنتشر فروع الشركة في أكثر من 158 دولة في العالم. وقد حصلت الشركة على تصاريح انتاج و بيع من:إدارة الأطعمة و الأدوية الأمريكية و قسم الزراعة بالولايات المتحدة ،و أيضا من مجلس علوم الصبار الدولي و مجلس الاقتصادي الأوروبي و المجلس الإسلامي في كاليفورنيا و منظمة المواصفات و المقاييس السعودية
+                </p>
+                <p class='text-center'>إن شركة “فوريفر ليفنج برودكتس” هي الزارع و المُصنعّ و الموزع الأهم و الأكبر في العالم لمنتجات نبات الصبار او ما يعرف بنبات الألوفيرا. تحصر الشركة على توفير منتجات عالية الجودة و يتركيز عال للصبار الطبيعي عوضاً عن إضافة بضع قطرات من الألوفير اإلى منتجاتها لحث المستهلك على شراها، حيث ان المكون الاساسي في كافة منتجات الشركة هو الجل المستخلص من نبات الصبار، ثمّ تضيف ما يكفي من المكونات الأخرى الطبيعية ايضاً و الضرورية لجودة المنتجات
+                </p>
+                <p class='text-center'>تمتلك “فورإيفر ليفنج” مزارعا لألوفيرا الواسعة في وادي الريودي جراندي جنوب تكساس وأيضاً في الجمهورية الدومينكية و مناطق أخرى من الكاريبي. يشرف على كل خطوات عمليةّ التنمية فريق خبير وحريص ،من حجرة الحضانة حيث تربي النبتات الصغار مروراً بحقول نباتات الألوفيرا الناضجة، المزروعة بدقة، يتمّ حصد نباتات الألوفير االناضجة، المزروعة بدقة لامتناهية، وصولاً إلى الحصاد اليدوي و المؤقت بدقة. يتم حصد نبتات الألوفير االناضجة متى بلغت نمه اأيبعد 4 أعوام من زراعتها ولا تستعمل أي أسمدة كيميائية أو مبيدات أعشاب أو طفيليات على نباتات الأ لوفيرا أو حتى على مقربة منه
+                </p>
+                <br>
+                <div class='text-center'>
+
+                    <img src='{% static 'main/images/AboutImages/image1.jpeg' %}' alt='' class='img-fluid' />
+                    <p><b>السيد/ريكس موغان مؤسس شركة فوريفر ليفينج برودكتس</b></p>
+                </div>
+                <br>
+                <ul>
+                    <li>شركه امريكيه الاصل تأسست سنه 78</li>
+                    <li>مجلس اداره ذوي خبره عاليه من العائله لهم نفس الرؤيه و التطلعات</li>
+                    <li>اكتر من 2.6 أرباح سنويا</li>
+                    <li>لاديون, ولها وسيله ماليه بالبنوك اكتر من 1.5 ارصده و ممتلكات</li>
+                    <li>لها فروع بأكثر من 185 دوله بالعالم</li>
+                    <li>منتجاتنا بمجال الصحه و الجمال اكثر المجالات بالسوق العالمي تصاعدا و نجاحا</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class='about-sections'>
+            <div class='container'>
+                <h3>أساسيات العمل</h3>
+                <ol>
+                    <li>
+                        <b>.معرفة و حفظ رقمك التعريفي من العقد</b>
+                        <p>يوجد الرقم التعريفي في مستطيل اعلى صفحة العقد على اليسار. أحفظه في اي مكان يسهل عليك الرجوع اليه فيما بعد(ملاحظات الهاتف مثلا أو المذكرة)
+                        </p>
+                        <br>
+                        <div class='text-center'>
+                            <img src='{% static 'main/images/AboutImages/image2.jpeg' %}' alt='' class='img-fluid' />
+                        </div>
+                        <br>
+                    </li>
+                    <li>
+                        <b>.يتوجب عليك طلب الرمز السري لحسابك في موقع شركة فورايفر ليفينج بروداكتس بارسال ايميل لفرع الشركة الذي سجل اسمك فيه.
+                        </b>
+                        <ul class='list-unstyled'>
+                            <li>:هنا نموذج للايميل</li>
+                            <li>عنوان الايميل</li>
+                            <li><b>Password Request</b></li>
+                            <li>لايميل:</li>
+                            <li class='ltr'>
+                                <p>Hello</p>
+                                <p>I would like to request a password to login in online , please</p>
+                                <p>MyId: اسمك الثلاثي كما هو مكتوب بالعقد</p>
+                                <p>Myname: رقمك التعريفي المكتوب في العقد</p>
+                                <p>Thank you</p>
+                                <p>:الايميل المرسل إليه</p>
+                                <p><a href='#'>Customerservice-uae@foreverliving.ae</a></p>
+                            </li>
+                            <li>:بعد الحصول على الرمز السري ادخل على موقع الشركة بعد تغيير الدولة من جهة اليسار اعلى الصفحة</li>
+                            <br>
+                            <div class='text-center'>
+                                <img src='{% static 'main/images/AboutImages/image3.jpeg' %}' alt='' class='img-fluid' />
+                            </div>
+                            <br>
+                        </ul>
+                    </li>
+                    <li>
+                        <b>.التعلم عن الأسعار و كيفية حساب الخصم</b>
+                    </li>
+                    <br>
+                    <ul>
+                        <li>..أن لأي منتج سعر خاص تحدده الشركة للزبون يجب الالتزام به و عدم رفعه</li>
+                        <li>كل الاسعار الموجوده في دليل منتجات الشركه هي اسعار الزبون</li>
+                        <li>.%على اسعار المنتجات15 .للموزع الجديد(اي شخص من بداية التسجيل)خصم</li>
+                        <li>.%من منصب (مساعد مشرف) وما يليه من المناصب الاخرى 30. يبدأ حساب خصم </li>
+                        <li>..توجد احيانا حسابات اخرى للخصم عند الشركة على غير ما تحسبه لوحدك بفروقات بسيطة</li>
+                    </ul>
+                    <b class='text-center'>طريقة حساب الخصم من السعر الاصلي</b>
+                    <br>
+                    <p>0.15 (السعرالاصلي*–%=السعرالاصلي 15خصم )</p>
+                    <p>%0.3 =السعرالاصلي_(السعرالاصلي* 30خصم</p>
+                    <li><b>:النقاط و الترقيات</b></li>
+                    <ol>
+                        <br>
+                        <li>تمتلك الشركة درجات وظيفية تبدأ بدرجة موزع ثم مساعد مشرف ثم مشرف ثم مساعد مدير ثم مدير الى ان تصل لدرجة مدير ألماسي و تزداد نسبة العمولة و الارباح مع ارتقائك بالسلم الوظيفي لدى الشركة <br>-كل منتج في الشركة له عدد من النقاط يتم حسابها لك عند الشراء من قبلك او من قبل من سجلتهم انت بالشركة.
+                        </li>
+                        <br>
+                        <li>هنا كل منصب و كم نقطة يتوجب الحصول عليها</li>
+                        <br>
+                        <table>
+                            <tr>
+                                <td>موزع</td>
+                                <td>مساعد مشرف</td>
+                                <td>مشرف</td>
+                                <td>مساعد مدير</td>
+                                <td>مدير</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>2cc</td>
+                                <td>25cc</td>
+                                <td>75cc</td>
+                                <td>125cc</td>
+                            </tr>
+                        </table>
+                        <br>
+                        <p><b>*لا يوجد هناك تنزيل وظيفي: بمعنى انك عندما تحقق مثلا درجة مشرف او مدير ،فستبقىفي هذه الدرجة ولن تنزل عنها الى ان تحقق الدرجة الوظيفية التالية.</b>
+                        </p>
+                        <br>
+                        <li>يسهل الحصول على النقاط كلما اشتريت شهريا من الشركة و كلما استطعت تسجيل موزعين جدد في الشركة
+                        </li>
+                        <br>
+                        <li>أي نقطة يسجلها من هو مسجل تحت اسمك فأنت تحصل على مثلها. وحتى انك تحصل على كل نقطة يسجلها من هو مسجل تحت اسم الشخص الذي سجلته انت.. لن يضيع اي حق لك
+                        </li>
+                        <br>
+                        <li>لتحقيق الترقية السريعة فيتوجب عليك تحقيق اربع نقاط كل شهر. ويجب الالتزام و تقسيم العمل على اتيان هذه النقاط بين الشراء الشخصي (اما للاستخدام الشخصي او للبيع) وبين ادخال وتسجيل موزعين جدد في الشركة
+                        </li>
+                        <br>
+                        <li>لكي تحتسب لك نقاط المسجلين من قبلك فيتوجب عليك الالتزام بالحصول على 4 نقاط كل شهر والا فانه لن تحتسب لك.
+                        </li>
+                        <br>
+                        <li><b>الترقي تلقائياً مع ترقي فريقك :</b>بمعنى انك اذا قمت بالتسجيل مع الشركة كموزع ثم قمت تسجيل شخص اخر جديد كموزع جديد للشركة و تمكن ذلك الشخص من تحقيق درجة مدير، فسوف ترتقي انت ايضا اًلىدرجة مدير تلقائياً
+                        </li>
+                        <br>
+                        <li><b>لا يوجد اية التزامات او رسوم اشتراك او تعهدات بحجم مشتريات معين كلشهر :</b> لك الحرية الكاملة في حجم و توقيت مشترياتك و مشتريات الافراد المسجلين في شبكتك التسويقية، ولكن بطبيعة الحال كلما ازاد حجم مشترياتك و حجم شبكتك التسويقية، سيزداد حجم ارباحك الشهرية المدفوعة من الشركة
+                        </li>
+                        <br>
+                        <li><b>الحصول على نسبة من ارباح الشركة على مستوى العالم</b> للأشخاص الذين سوف يحققون درجة مدير والتي تصل الى مبالغ مالية ضخمة
+                        </li>
+                    </ol>
+                    <br>
+                    <br>
+                    <li><b>معرفة الامتيازات:</b><br>
+                        <p>لامتيازاتكثيرةومنها:</p>
+                    </li>
+                    <ol>
+                       <br>
+                        <li>
+                            <span class='underbold'>لاستفادة صحيا لًك ولأفراد عائلتك:</span> هي الميزة الاولى والأهم نتيجة لاستخدامك الشخصي المستمر لمنتجات الشركة العالية الجودة.
+                        </li>
+                        <br>
+                        <li>
+                            <span class='underbold'>خصم خاص بالأعضاء الجدد:</span> تحصل على خصم خاص بك على مشترياتك المباشرة من الشركة فور تسجيلك و الذي يبلغ 15 % على جميع مشترياتك من الشركة سواء للاستخدام الشخصي او لتسويقها لمن حولك، وسوف ترتفع نسبة الخصم الخاصة بك الى 30 % عندما تصل مشترياتك 1420 درهم خلال شهرين متتاليين وستستمر في الحصول على هذا الخصم مدى الحياة، وسينتج عن ذلك نسبة ربح خاصة بك كموزع على كافة المنتجات التي ستباع عن طريقك الى 43 % من مبلغ شرائك
+                        </li>
+                        <li>
+                           <br>
+                            <span class='underbold'> عمولة شهرية اضافية (كاشباك):</span> تحصل على عمولة تدفع شهرياً تبدأ من 5% وتصل الى 18% على مشترياتك و مشتريات كافة الاشخاص او الموزعين او المستهلكين الذين ستقوم بتسجيلهم ضمن الشبكة التسويقية الخاصة بك، هذا خلافا لًنسبة الخصم على المنتجات التي تصل الى 30 % على كلا لمشتريات
+                            <br>
+                            <table>
+                                <tr>
+                                    <td>موزع</td>
+                                    <td>مساعد مشرف</td>
+                                    <td>مشرف</td>
+                                    <td>مساعد مدير</td>
+                                    <td>مدير</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>5%</td>
+                                    <td>8%</td>
+                                    <td>13%</td>
+                                    <td>18%</td>
+                                </tr>
+                            </table>
+                        </li>
+                        <br>
+                        <li><span class='underbold'> لا يوجد اية التزامات او رسوم اشتراك او تعهدات بحجم مشتريات معين كل شهر:</span> لك الحرية الكاملة في حجم و توقيت مشترياتك و مشتريات الافراد المسجلين في شبكتك التسويقية، ولكن بطبيعة الحال كلما ازاد حجم مشترياتك و حجم شبكتك التسويقية، سيزداد حجم ارباحك الشهرية المدفوعة من الشركة
+                        </li>
+                        <br>
+                        <li><span class='underbold'>الحصول على نسبة من ارباح الشركة على مستوى العالم</span> لأشخاص الذين سوف يحققون درجة مدير و التي تصل الى مبالغ مالية ضخمة
+                        </li>
+                    </ol>
+                </ol>
+                <br>
+                <br>
+                <p><b>ما عليك فعله كل شهر:</b></p>
+                <ol>
+                    <li>شراء شهريا من الشركة بقيمة تضمن لك نقطة أو نقطتين.<br> % النقطة = 711 درهم لأصحاب الخصم 15 % و = 600 درهم لاصحاب خصم 30<br> % النقطتين = 1421 درهم لأصحاب الخصم 15 % و = 1180 درهم لاصحاب خصم 30
+                    </li>
+                    <li>سجيل موزعين جدد (كلما زاد عددهم كلما زادت عمولتك)</li>
+                </ol>
+                <br>
+                <br>
+                <p><b>فكار للشراء و تكوين نقاط شخصية:</b></p>
+                <ul>
+                    <li>استبدال المنتجات الشخصية المنزلية بمنتجات شركة فورايفر ليفينج (هناك الكثير يمكن استبداله)
+                    </li>
+                    <li>تكوين زبائن و البيع لهم بسعر الزبون</li>
+                </ul>
+                <br>
+                <p><b>فكار لا يجاد موزعين:</b></p>
+                <ul>
+                    <li>الاعلان في مواقع الاعلانات المجانية بطريقتك المبتكرة</li>
+                    <li>تشجيع الاخرين للتسجيل في الشركة لشراء المنتجات بسعر الخصم ( بعد ذلك له كامل الحرية بالعمل و الترقي للمناصب الاخرى او الاكتفاء فقط بالشراء بسعر الخصم.
+                    </li>
+                    <li>شجيع التجار (تاجرات البلاكبيري و الانستجرام) باستثمار اموالهم في المشروع.</li>
+                </ul>
+                <br>
+                <p><b>(تستطيع التفكير بطرق كثيرة بالبحث في مواقع الانترنت)</b></p>
+                <br>
+                <p><b>طرق الشراء و التوصيل</b></p>
+                <div class='text-center'>
+                    <img src='{% static 'main/images/AboutImages/image4.png' %}' alt='' class='img-fluid' />
+                </div>
+            </div>
+        </div>
+
+        <!-- Start About Us Section -->
+
+        <!-- Start About Page Product Section -->
+        <div class='about-page-product-section'>
+            <div class='container'>
+                <h2>منتجات فورايفر عالية الجوده</h2>
+                <div class='row'>
+                    <div class='col-md-6'>
+                        <div class='box'>
+                            <img src='{% static 'main/images/flaticons/slim-down.png' %}' alt='' class='img-fluid' />
+                            <h4>التخسيس</h4>
+                            <p>هذا الموقع ليس تبع اي موقع اخر او شركه بل هو مستقل و يقوم ببيع المنتجات و الادوات و الاعشاب</p>
+                        </div>
+                    </div>
+                    <div class='col-md-6'>
+                        <div class='box'>
+                            <img src='{% static 'main/images/flaticons/woman-hair.png' %}' alt='' class='img-fluid' />
+                            <h4>العنايه و الشعر</h4>
+                            <p>هذا الموقع ليس تبع اي موقع اخر او شركه بل هو مستقل و يقوم ببيع المنتجات و الادوات و الاعشاب</p>
+                        </div>
+                    </div>
+                    <div class='col-md-6'>
+                        <div class='box'>
+                            <img src='{% static 'main/images/flaticons/olives.png' %}' alt='' class='img-fluid' />
+                            <h4>الزيوت</h4>
+                            <p>هذا الموقع ليس تبع اي موقع اخر او شركه بل هو مستقل و يقوم ببيع المنتجات و الادوات و الاعشاب</p>
+                        </div>
+                    </div>
+                    <div class='col-md-6'>
+                        <div class='box'>
+                            <img src='{% static 'main/images/flaticons/pills.png' %}' alt='' class='img-fluid' />
+                            <h4>الصحه</h4>
+                            <p>هذا الموقع ليس تبع اي موقع اخر او شركه بل هو مستقل و يقوم ببيع المنتجات و الادوات و الاعشاب</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start About Page Product Section -->
+
+        <!-- About What Are We Doing -->
+
+        <div class='about-sections'>
+            <div class='container'>
+                <h2>ماذا نعمل ؟</h2>
+                <ul>
+                    <li>نستخدم المنتجات بشكل شخصي كن انت افضل زبون لك</li>
+                    <li>نشارك النتائج الفوائد مع الاخرين بهدف إيجاد زبائن دائمين</li>
+                    <li>نشارك الاخرين بفكره البزنسس لبناء فريق من الشركاء</li>
+                    <li>ندربهم علي النجاح استخدام / إيجاد زبائن / بناء فريق عمل</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- About What Are We Doing -->
+
+        <!-- Why Forever -->
+
+        <div class='whyus'>
+            <div class='about-sections'>
+                <div class='container'>
+                    <h2>لماذا منتجات فورايفر ؟</h2>
+                    <div class='alert alert-warning'>ماذا تتميز به منتاجتنا عن غيرها</div>
+                    <ul>
+                        <li>تمتلك اكبر مزارع<br>و منتج للويفرا و منتجات العسل بالعالم</li>
+                        <li>نستخدم الجل داخل الورقه فقط</li>
+                        <li>بدون اي كماويات و ملقحات صناعيه</li>
+                        <li>براء اختراع استقرار الجل كأنه طازج</li>
+                    </ul>
+                    <div class='alert alert-success'>جوده عاليه للمنتج و ضمان غير مشروط لجميع المنتجات</div>
+                </div>
+            </div>
+        </div>
+        {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+        <!-- Why Forever -->
+
+        <!-- Footer Of The Page -->
+
+        <div class='footer-of-page text-center'>
+            <div class='about-sections'>
+                <p>حياتك انعكاس لما كنت تفعله بالماضي...<br>وحياتك بالمستقبل انعكاس لما ستفعله الان...</p>
+                <p>شكرا</p>
+            </div>
+        </div>
+
+        <!-- Footer Of The Page -->
+
+    </div>
+    <!-- End Of About Page Content -->
+
+
+
+
+    <!-- Footer -->
+    <div class='footer'>
+        <div class='container'>
+            <div class='row'>
+                <div class='col'>
+                    <div class='footer-brand'>
+                        <p>هنا يكتب نص يشرح محتوي الموقع و ما هي اهدافها </p>
+                        <ul class='footer-media list-unstyled'>
+                            <li><a href='https://www.facebook.com/malak.fathy.161' target="_blank"><i class='fa fa-facebook'></i></a></li>
+                            <li class='whatisapp'><a href='#'><i class='fa fa-whatsapp'></i></a></li>
+                            <li class='gemail'><a href='#'><i class='fa fa-google'></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class='col'>
+                    <ul class='sitemap list-unstyled row'>
+                        <div class='col-6'>
+                            <li>خريطه الموقع</li>
+                           <li class="active">
+                                <a href="{% url 'main:home' %}">الرئيسيه <span class="sr-only">(current)</span></a>
+                            </li>
+                            {% for category in categories %}
+                             <li>
+                                <a href="{% url 'main:categories' cat_name=category|spacetodash %}">{{ category|dashtospace }}</a>
+                            </li>
+                            {% endfor %}
+                        </div>
+                        <div class='col-6'>
+                            <li>
+                                <a href="{% url 'main:business' %}">Business</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'main:about' %}">من نحن</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'main:contact' %}">أتصل بنا</a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+                <div class='col'>
+                    <a href='{% url 'main:home' %}' target="_blank"><img src='{% static 'main/images/logo.png' %}' alt='' /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+
+    <!-- Sub Footer -->
+    <div class='sub-footer'>
+        <p>Copyright © 2018. foreverhealthyandbeauty.com All Rights Reserved</p>
+    </div>
+    <!-- Sub Footer -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+     <script src="{% static 'main/js/jquery-3.1.1.min.js' %}"></script>
+    <script src="{% static 'main/js/popper.min.js' %}"></script>
+    <!-- Javascript Tooltip library -->
+    <script src="{% static 'main/js/bootstrap.min.js' %}"></script>
+	<script type="text/javascript">
+    (function () {
+        var options = {
+            whatsapp: "+966536359930", // WhatsApp number
+            company_logo_url: "//static.whatshelp.io/img/flag.png", // URL of company logo (png, jpg, gif)
+            greeting_message: "Hello, how may we help you? Just send us a message now to get assistance.", // Text of greeting message
+            call_to_action: "Message us", // Call to action
+            position: "right", // Position may be 'right' or 'left'
+        };
+        var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();
+</script>
+    <script src='{% static 'main/js/plugins.js' %}'></script>
+</body>
+
+</html>
