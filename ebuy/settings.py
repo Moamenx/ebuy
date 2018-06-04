@@ -144,8 +144,6 @@ STATIC_ROOT = 'staticfiles'
 
 CART_SESSION_ID = 'cart'
 
-PAYPAL_RECEIVER_EMAIL = 'moamen_mohammed@hotmail.com'
-
 PAYPAL_TEST = True
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'

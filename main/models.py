@@ -15,6 +15,13 @@ class Package(models.Model):
     main_photo = models.FileField(null=False)
     amount = models.PositiveIntegerField(null=False, default=0)
     amount_sold = models.PositiveIntegerField(null=False, default=0)
+    kwd_price = models.FloatField(null=False, default=0)
+    omr_price = models.FloatField(null=False, default=0)
+    bhd_price = models.FloatField(null=False, default=0)
+    jod_price = models.FloatField(null=False, default=0)
+    lbp_price = models.FloatField(null=False, default=0)
+    qar_price = models.FloatField(null=False, default=0)
+    sar_price = models.FloatField(null=False,default=0)
 
     def __str__(self):
         return self.name
@@ -66,6 +73,13 @@ class Product(models.Model):
     amount_sold = models.IntegerField(null=False, default=0)
     category = models.ForeignKey('Category', on_delete=models.CASCADE, null=False)
     photo = models.FileField(null=False)
+    kwd_price = models.FloatField(null=False, default=0)
+    omr_price = models.FloatField(null=False, default=0)
+    bhd_price = models.FloatField(null=False, default=0)
+    jod_price = models.FloatField(null=False, default=0)
+    lbp_price = models.FloatField(null=False, default=0)
+    qar_price = models.FloatField(null=False, default=0)
+    sar_price = models.FloatField(null=False,default=0)
 
     def __str__(self):
         return self.name

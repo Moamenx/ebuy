@@ -222,7 +222,7 @@
                                        {% if item.discount_rate > 0 %}
                                        <span class='flag-price'>{% currency_converter item.discounted_price 'AED' %}</span>
                                            {% else %}
-                                           <span class='flag-price'>{% currency_converter item.price 'AED' %}</span>
+                                           <span class='flag-price'>{{ item.price }}</span>
                                        {% endif %}
 
                                     </li>
@@ -231,7 +231,7 @@
                                       {% if item.discount_rate > 0 %}
                                        <span class='flag-price'>{% currency_converter item.discounted_price 'QAR' %}</span>
                                            {% else %}
-                                           <span class='flag-price'>{% currency_converter item.price 'QAR' %}</span>
+                                           <span class='flag-price'>{{ item.qar_price }}</span>
                                        {% endif %}
                                     </li>
                                     <li>
@@ -239,7 +239,7 @@
                                        {% if item.discount_rate > 0 %}
                                        <span class='flag-price'>VAT +16% {% currency_converter item.discounted_price 'OMR' %} </span>
                                            {% else %}
-                                           <span class='flag-price'>VAT +16% {% currency_converter item.price 'OMR' %} </span>
+                                           <span class='flag-price'>VAT +16% {{ item.omr_price }} </span>
                                        {% endif %}
                                     </li>
                                  </div>
@@ -249,7 +249,7 @@
                                        {% if item.discount_rate > 0 %}
                                        <span class='flag-price'>{% currency_converter item.discounted_price 'SAR' %} VAT +5%</span>
                                            {% else %}
-                                           <span class='flag-price'>{% currency_converter item.price 'SAR' %} VAT +5%</span>
+                                           <span class='flag-price'>{{ item.sar_price }} VAT +5%</span>
                                        {% endif %}
                                     </li>
                                     <li>
@@ -257,7 +257,7 @@
                                        {% if item.discount_rate > 0 %}
                                        <span class='flag-price'>{% currency_converter item.discounted_price 'KWD' %} </span>
                                            {% else %}
-                                           <span class='flag-price'>{% currency_converter item.price 'KWD' %} </span>
+                                           <span class='flag-price'>{{ item.kwd_price }} </span>
                                        {% endif %}
                                     </li>
                                     <li>
@@ -265,7 +265,7 @@
                                        {% if item.discount_rate > 0 %}
                                        <span class='flag-price'>{% currency_converter item.discounted_price 'JOD' %} VAT +16%</span>
                                            {% else %}
-                                           <span class='flag-price'>{% currency_converter item.price 'JOD' %} VAT +16%</span>
+                                           <span class='flag-price'>{{ item.jod_price }} VAT +16%</span>
                                        {% endif %}
                                     </li>
                                  <li>
@@ -273,7 +273,7 @@
                                        {% if item.discount_rate > 0 %}
                                        <span class='flag-price'>{% currency_converter item.discounted_price 'LBP' %} VAT +11% </span>
                                            {% else %}
-                                           <span class='flag-price'>{% currency_converter item.price 'LBP' %} VAT +11%</span>
+                                           <span class='flag-price'>{{ item.lbp_price }} VAT +11%</span>
                                        {% endif %}
                                     </li>
                                  </div>
@@ -413,7 +413,7 @@
                                        {% if item.discount_rate > 0 %}
                                        <span class='flag-price'>{% currency_converter item.discounted_price 'AED' %}</span>
                                            {% else %}
-                                           <span class='flag-price'>{% currency_converter item.price 'AED' %}</span>
+                                           <span class='flag-price'>{{ item.price }}</span>
                                        {% endif %}
 
                                     </li>
@@ -422,7 +422,7 @@
                                       {% if item.discount_rate > 0 %}
                                        <span class='flag-price'>{% currency_converter item.discounted_price 'QAR' %}</span>
                                            {% else %}
-                                           <span class='flag-price'>{% currency_converter item.price 'QAR' %}</span>
+                                           <span class='flag-price'>{{ item.qar_price }}</span>
                                        {% endif %}
                                     </li>
                                     <li>
@@ -430,7 +430,7 @@
                                        {% if item.discount_rate > 0 %}
                                        <span class='flag-price'>{% currency_converter item.discounted_price 'OMR' %}</span>
                                            {% else %}
-                                           <span class='flag-price'>{% currency_converter item.price 'OMR' %}</span>
+                                           <span class='flag-price'>{{ item.omr_price }}</span>
                                        {% endif %}
                                     </li>
                                  </div>
@@ -440,7 +440,7 @@
                                        {% if item.discount_rate > 0 %}
                                        <span class='flag-price'>{% currency_converter item.discounted_price 'SAR' %}</span>
                                            {% else %}
-                                           <span class='flag-price'>{% currency_converter item.price 'SAR' %}</span>
+                                           <span class='flag-price'>{{ item.sar_price }}</span>
                                        {% endif %}
                                     </li>
                                     <li>
@@ -448,7 +448,7 @@
                                        {% if item.discount_rate > 0 %}
                                        <span class='flag-price'>{% currency_converter item.discounted_price 'KWD' %}</span>
                                            {% else %}
-                                           <span class='flag-price'>{% currency_converter item.price 'KWD' %}</span>
+                                           <span class='flag-price'>{{ item.kwd_price }}</span>
                                        {% endif %}
                                     </li>
                                     <li>
@@ -456,7 +456,7 @@
                                        {% if item.discount_rate > 0 %}
                                        <span class='flag-price'>{% currency_converter item.discounted_price 'JOD' %}</span>
                                            {% else %}
-                                           <span class='flag-price'>{% currency_converter item.price 'JOD' %}</span>
+                                           <span class='flag-price'>{{ item.jod_price }}</span>
                                        {% endif %}
                                     </li>
                                  <li>
@@ -464,7 +464,7 @@
                                        {% if item.discount_rate > 0 %}
                                        <span class='flag-price'>{% currency_converter item.discounted_price 'LBP' %}</span>
                                            {% else %}
-                                           <span class='flag-price'>{% currency_converter item.price 'LBP' %}</span>
+                                           <span class='flag-price'>{{ item.lbp_price }}</span>
                                        {% endif %}
                                     </li>
                                  </div>
